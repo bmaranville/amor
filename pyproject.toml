@@ -4,3 +4,40 @@ requires = [
     "wheel"
 ]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "amor_eos"
+dynamic = ["version"]
+authors = [
+    {name = "Jochen Stahn - Paul Scherrer Institut", email = "jochen.stahn@psi.ch"}
+]
+description = "EOS reflectometry reduction for AMOR instrument"
+readme = "README.rst"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+    "Development Status :: 5 - Production/Stable",
+]
+dependencies = [
+    "numpy",
+    "h5py",
+    "orsopy",
+    "numba",
+]
+
+[project.urls]
+Homepage = "https://github.com/jochenstahn/amor"
+
+[project.scripts]
+eos = "eos_cli.eos:main"
+events2histogram = "eos_cli.events2histogram:main"
+
+[tool.setuptools]
+packages = ["libeos", "eos_cli"]
+
+[tool.setuptools.dynamic]
+version = {attr = "libeos.__version__"}
